@@ -11,6 +11,7 @@ class ImageDemo extends StatefulWidget {
 
 class _ImageDemoState extends State<ImageDemo> {
   BoxShape boxShape;
+
   //CancellationToken cancellationToken;
   @override
   void initState() {
@@ -33,6 +34,7 @@ class _ImageDemoState extends State<ImageDemo> {
         children: <Widget>[
           AppBar(
             title: Text("ImageDemo"),
+            backgroundColor: Colors.deepOrangeAccent,
           ),
           Row(
             children: <Widget>[
@@ -43,6 +45,7 @@ class _ImageDemoState extends State<ImageDemo> {
                     boxShape = BoxShape.circle;
                   });
                 },
+                color: Colors.lightBlue,
               ),
               Expanded(
                 child: Container(),
@@ -86,8 +89,8 @@ class _ImageDemoState extends State<ImageDemo> {
             child: Align(
               child: ExtendedImage.network(
                 url,
-                width: ScreenUtil.instance.setWidth(400),
-                height: ScreenUtil.instance.setWidth(400),
+                width: ScreenUtil.instance.setWidth(500),
+                height: ScreenUtil.instance.setWidth(500),
                 fit: BoxFit.fill,
                 cache: true,
                 border: Border.all(color: Colors.red, width: 1.0),
@@ -96,7 +99,22 @@ class _ImageDemoState extends State<ImageDemo> {
                 //cancelToken: cancellationToken,
               ),
             ),
-          )
+          ),
+          FloatingActionButton(
+            onPressed: () {
+              clearDiskCachedImages().then((bool done) {
+                showToast(done ? "clear succeed" : "clear failed",
+                    position: ToastPosition(align: Alignment.center));
+              });
+            },
+            child: Text(
+              "clear cache",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                inherit: false,
+              ),
+            ),
+          ),
         ],
       ),
     );

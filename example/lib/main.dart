@@ -6,6 +6,7 @@ import 'package:example/image_list_demo.dart';
 import 'package:example/paint_image_demo.dart';
 import 'package:example/photo_view_demo.dart';
 import 'package:example/zoom_image_demo.dart';
+import 'package:example/jacklin/jacklin_app_bar.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker_saver/image_picker_saver.dart';
@@ -63,6 +64,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     pages.add(Page(
+        PageType.JacklinAppBar,
+        "定制化AppBar"));
+    pages.add(Page(
         PageType.Image,
         "cache image"
         "save to photo Library"
@@ -114,6 +118,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             onTap: () {
               switch (page.type) {
+                case PageType.JacklinAppBar:
+                  pageWidget= JacklinAppBar();
+                  break;
                 case PageType.Image:
                   pageWidget = new ImageDemo();
                   break;
@@ -192,7 +199,7 @@ class Page {
   Page(this.type, this.description);
 }
 
-enum PageType { Image, List, Custom, Crop, Paint, Zoom, PhotoView }
+enum PageType { Image, List, Custom, Crop, Paint, Zoom, PhotoView ,JacklinAppBar}
 
 String _imageTestUrl;
 String get imageTestUrl =>

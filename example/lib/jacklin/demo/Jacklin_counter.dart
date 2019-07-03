@@ -27,9 +27,11 @@ class _JacklinCounterState extends State<JacklinCounter> {
           new IconButton(
               icon: new Icon(Icons.search), tooltip: '搜索', onPressed: null)
         ],
+        backgroundColor: Colors.deepOrangeAccent,
       ),
       body: new Center(
-        child: Text('count:$_counter'),
+        child: Text('count:$_counter',style: TextStyle(fontSize: 50,color: Colors.black),),
+//      child: new Image.network("http://5b0988e595225.cdn.sohucs.com/images/20190320/e72d79f28425494c959b8ee67811363b.gif"),
       ),
       floatingActionButton: new FloatingActionButton(
           child: Text('添加'),

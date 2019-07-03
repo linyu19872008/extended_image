@@ -13,7 +13,7 @@ import 'package:image_picker_saver/image_picker_saver.dart';
 import "package:oktoast/oktoast.dart";
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'jacklin/demo/Jacklin_demo.dart';
+import 'jacklin/demo/Jacklin_counter.dart';
 
 void main() => runApp(MyApp());
 
@@ -66,8 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     pages.add(Page(
-        PageType.JacklinDemo,
-        "jacklin demo"));
+        PageType.JacklinCounter,
+        "计数器"));
     pages.add(Page(
         PageType.JacklinAppBar,
         "定制化AppBar"));
@@ -123,8 +123,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             onTap: () {
               switch (page.type) {
-                case PageType.JacklinDemo:
-                  pageWidget= JacklinDemo();
+                case PageType.JacklinCounter:
+                  pageWidget= JacklinCounter();
                   break;
                 case PageType.JacklinAppBar:
                   pageWidget= JacklinAppBar();
@@ -207,7 +207,7 @@ class Page {
   Page(this.type, this.description);
 }
 
-enum PageType { Image, List, Custom, Crop, Paint, Zoom, PhotoView ,JacklinAppBar,JacklinDemo}
+enum PageType { Image, List, Custom, Crop, Paint, Zoom, PhotoView ,JacklinAppBar,JacklinCounter}
 
 String _imageTestUrl;
 String get imageTestUrl =>

@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import "package:oktoast/oktoast.dart";
 
-class JacklinDemo extends StatefulWidget {
+class JacklinCounter extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return _JacklinDemoState();
-  }
+  _JacklinCounterState createState() => _JacklinCounterState();
 }
 
-class _JacklinDemoState extends State<JacklinDemo>
-    with SingleTickerProviderStateMixin {
-  int count = 0;
+class _JacklinCounterState extends State<JacklinCounter> {
+  int _counter = 0;
+
+  void _incCount(){
+    setState(() {
+      _counter++;
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,21 +22,21 @@ class _JacklinDemoState extends State<JacklinDemo>
       appBar: new AppBar(
         leading: new IconButton(
             icon: new Icon(Icons.menu), tooltip: '菜单', onPressed: null),
-        title: new Text("appbar"),
+        title: new Text("计数器"),
         actions: <Widget>[
           new IconButton(
               icon: new Icon(Icons.search), tooltip: '搜索', onPressed: null)
         ],
       ),
       body: new Center(
-        child: Text(count.toString()),
+        child: Text('count:$_counter'),
       ),
       floatingActionButton: new FloatingActionButton(
           child: Text('添加'),
-          tooltip: 'Add',
+          tooltip: '添加',
           onPressed: () {
-            showToast('添加元素', position: ToastPosition(align: Alignment.center));
-            count++;
+            showToast('添加计数', position: ToastPosition(align: Alignment.center));
+            _incCount();
           }),
     );
   }

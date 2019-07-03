@@ -13,6 +13,8 @@ import 'package:image_picker_saver/image_picker_saver.dart';
 import "package:oktoast/oktoast.dart";
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'jacklin/demo/Jacklin_demo.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -63,6 +65,9 @@ class _MyHomePageState extends State<MyHomePage> {
   TuChongRepository listSourceRepository;
   @override
   void initState() {
+    pages.add(Page(
+        PageType.JacklinDemo,
+        "jacklin demo"));
     pages.add(Page(
         PageType.JacklinAppBar,
         "定制化AppBar"));
@@ -118,6 +123,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             onTap: () {
               switch (page.type) {
+                case PageType.JacklinDemo:
+                  pageWidget= JacklinDemo();
+                  break;
                 case PageType.JacklinAppBar:
                   pageWidget= JacklinAppBar();
                   break;
@@ -199,7 +207,7 @@ class Page {
   Page(this.type, this.description);
 }
 
-enum PageType { Image, List, Custom, Crop, Paint, Zoom, PhotoView ,JacklinAppBar}
+enum PageType { Image, List, Custom, Crop, Paint, Zoom, PhotoView ,JacklinAppBar,JacklinDemo}
 
 String _imageTestUrl;
 String get imageTestUrl =>

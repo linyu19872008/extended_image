@@ -14,6 +14,7 @@ import "package:oktoast/oktoast.dart";
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'jacklin/demo/Jacklin_counter.dart';
+import 'jacklin/live/jacklin_live.dart';
 
 void main() => runApp(MyApp());
 
@@ -63,14 +64,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   List<Page> pages = new List<Page>();
   TuChongRepository listSourceRepository;
+
   @override
   void initState() {
-    pages.add(Page(
-        PageType.JacklinCounter,
-        "计数器"));
-    pages.add(Page(
-        PageType.JacklinAppBar,
-        "定制化AppBar"));
+    pages.add(Page(PageType.JacklinLive, "直播"));
+    pages.add(Page(PageType.JacklinCounter, "计数器"));
+    pages.add(Page(PageType.JacklinAppBar, "定制化AppBar"));
     pages.add(Page(
         PageType.Image,
         "cache image"
@@ -123,11 +122,14 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             onTap: () {
               switch (page.type) {
+                case PageType.JacklinLive:
+                  pageWidget = JacklinLive();
+                  break;
                 case PageType.JacklinCounter:
-                  pageWidget= JacklinCounter();
+                  pageWidget = JacklinCounter();
                   break;
                 case PageType.JacklinAppBar:
-                  pageWidget= JacklinAppBar();
+                  pageWidget = JacklinAppBar();
                   break;
                 case PageType.Image:
                   pageWidget = new ImageDemo();
@@ -204,12 +206,25 @@ class _MyHomePageState extends State<MyHomePage> {
 class Page {
   final PageType type;
   final String description;
+
   Page(this.type, this.description);
 }
 
-enum PageType { Image, List, Custom, Crop, Paint, Zoom, PhotoView ,JacklinAppBar,JacklinCounter}
+enum PageType {
+  Image,
+  List,
+  Custom,
+  Crop,
+  Paint,
+  Zoom,
+  PhotoView,
+  JacklinAppBar,
+  JacklinCounter,
+  JacklinLive
+}
 
 String _imageTestUrl;
+
 String get imageTestUrl =>
     _imageTestUrl ?? "https://photo.tuchong.com/4870004/f/298584322.jpg";
 
